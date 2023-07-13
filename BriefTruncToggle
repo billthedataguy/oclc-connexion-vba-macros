@@ -1,0 +1,40 @@
+'MacroName:BriefTruncToggle
+'MacroDescription:BriefTruncToggle
+
+
+'Shift`
+
+
+Sub Main
+
+   Dim CS As Object
+   On Error Resume Next
+   Set CS  = GetObject(,"Connex.Client")
+   On Error GoTo 0
+   If CS  Is Nothing Then
+      Set CS  = CreateObject("Connex.Client")
+   End If
+
+
+   CS.SendKeys "", -1
+
+   If CS.ItemType = 6 Then
+   
+     CS.SendKeys "", -1
+     MsgBox "Brief list --> Trunc list"     
+     CS.SendKeys "%(vtt{ENTER}t)", -1 
+      
+          
+   ElseIf CS.ItemType = 25 Then
+   
+      CS.SendKeys "", -1
+      MsgBox "Trunc list --> Brief list"
+      CS.SendKeys "%(vtt{ENTER}b)", -1
+              
+   End If
+   
+
+End Sub
+
+
+
