@@ -1,0 +1,27 @@
+'MacroName:findMostHoldingsShift4
+'MacroDescription:FindMostHoldingsRecShift4
+
+
+' Shift-4
+
+Sub Main
+
+   Dim CS As Object
+   Dim sSelectAll As String 
+      
+ 
+   On Error Resume Next
+   Set CS  = GetObject(,"Connex.Client")
+   On Error GoTo 0
+   If CS  Is Nothing Then
+      Set CS  = CreateObject("Connex.Client")
+   End If
+   
+   sSelectAll = CS.Copy(1,1,10,2)
+   
+   MsgBox sSelectAll
+   
+   
+
+End Sub
+
