@@ -1,0 +1,32 @@
+'MacroName:AllDone
+'MacroDescription:Save F4 Validate Shift-F5 Holdings F8 Export F5
+
+
+'Ctrl-F2
+
+
+Sub Main
+
+   Dim CS As Object
+   On Error Resume Next
+   Set CS  = GetObject(,"Connex.Client")
+   On Error GoTo 0
+   If CS  Is Nothing Then
+      Set CS  = CreateObject("Connex.Client")
+   End If
+
+   nSaveFileNumber = CS.SaveToLocalFile (False, False)
+   
+   nNumErrors = CS.Validate(sErrorList)
+
+   bool = CS.UpdateHoldings
+
+   bool = CS.Export
+   
+   MsgBox "Record exported successfully asshat!"
+   
+   CS.SendKeys "", -1
+   CS.SendKeys "{F2}", 0
+   
+ 
+ End Sub
