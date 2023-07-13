@@ -1,0 +1,51 @@
+'MacroName:copy050callnum
+'MacroDescription:copy050callnum
+
+'CtrlF9
+'Edit file path as needed and configure Notepad with proper page setup
+
+
+Sub Main ()
+
+
+   Dim CS As Object
+   On Error Resume Next
+   Set CS  = GetObject(,"Connex.Client")
+   On Error GoTo 0
+   If CS  Is Nothing Then
+      Set CS  = CreateObject("Connex.Client")
+   End If
+   
+   Dim sSpine as String
+   Dim nResult as String
+   Dim sData as String
+   Dim sFieldText as String
+   
+   Dim LabelFile as String
+   
+   LabelFile = "C:\Users\ej2595ht\Desktop\OCLC_LABELS\Labels.txt" 
+   
+         
+   nResult = CS.GetLabelSpine("MCOA", sSpine) 
+   
+  
+   Clipboard.Clear
+   Clipboard.SetText sSpine
+   
+   
+   If CS.GetField("050", 1, sData) = True Then
+      
+      sFieldText = "090  " + Mid(sData, 6)
+      CS.SetField 1, sFieldText
+      
+   End If
+   
+   
+   
+   MsgBox sSpine & "      copied to clipboard asshat!"
+  
+   ' Print # LabelFile, sSpine
+  
+  
+     
+ End Sub
