@@ -1,0 +1,45 @@
+'MacroName:CheckIfHeldMCO
+'MacroDescription:CheckIfHeldMCO
+
+
+'Ctrl`
+
+
+Sub Main
+
+   Dim CS As Object
+   Dim nNumRecordsBrief As Integer
+   Dim nNumRecordsTruncated As Integer
+   Dim sNumRecString As String 
+ 
+   On Error Resume Next
+   Set CS  = GetObject(,"Connex.Client")
+   On Error GoTo 0
+   If CS  Is Nothing Then
+      Set CS  = CreateObject("Connex.Client")
+   End If
+   
+  
+   
+   nNumRecordsBrief = CS.SearchList("Held, Holdings", "Description", False)
+   
+   nNumRecordsTruncated = CS.Searchlist("Held", "Held", False)
+   
+   'sNumRecString = CStr(nNumRecords)
+   
+   If ((nNumRecordsBrief <> 0) OR (nNumRecordsTruncated <> 0)) Then
+      
+         MsgBox "ALREADY HELD ASSHAT!"
+         
+         
+   Else 
+   
+         MsgBox "Not held - you're in the clear asshat!"
+         
+         
+   End If
+
+End Sub
+
+
+
