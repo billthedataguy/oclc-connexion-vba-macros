@@ -1,0 +1,25 @@
+'MacroName:copy050to090
+'MacroDescription:copy050to090
+
+' ? hotkey
+
+Sub Main
+
+   Dim CS As Object
+   Dim sData, sFieldText as String
+   
+   On Error Resume Next
+   Set CS  = GetObject(,"Connex.Client")
+   On Error GoTo 0
+   If CS  Is Nothing Then
+      Set CS  = CreateObject("Connex.Client")
+   End If
+   
+   If CS.GetField("050", 1, sData) = True Then
+      
+      sFieldText = "090  " + sData
+      CS.SetField 1, sFieldText
+      
+   End If
+
+End Sub
