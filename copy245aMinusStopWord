@@ -1,0 +1,64 @@
+'MacroName:copy245aMinusStopWord
+'MacroDescription:copy245aMinusStopWord
+
+'CtrlF3
+
+Sub Main
+
+
+   Dim CS As Object
+   On Error Resume Next
+   Set CS  = GetObject(,"Connex.Client")
+   On Error GoTo 0
+   If CS  Is Nothing Then
+      Set CS  = CreateObject("Connex.Client")
+   End If
+   
+   Dim y as Integer
+   Dim z as String
+   Dim tt as String 
+   Dim ttnew as String
+   
+   CS.CursorRow = 1
+   CS.CursorColumn = 1
+  
+   CS.GetFieldUnicode 245,1,sData
+      
+   y=InStr(sData,Chr(223))
+   
+    
+   If y=0 Then
+
+      z=sData
+
+    Else
+
+      z=Mid(sData,6,y-9)
+      
+    End If
+
+   tt=Trim(z)
+   
+   ttnew=tt
+   
+   If InStr(1,tt,"The ")=1 Then
+   
+       ttnew=Mid(tt,5,Len(tt)-3)
+       
+   Else
+      
+         If InStr(1,tt,"A ")=1 Then
+   
+         ttnew=Mid(tt,3,Len(tt)-1)
+         
+         End If
+   
+   End If
+
+      
+   CS.FindText ttnew, False
+   CS.CopySelected
+   
+   MsgBox ttnew
+   
+ End Sub
