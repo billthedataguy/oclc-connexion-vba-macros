@@ -1,0 +1,27 @@
+'MacroName:Del856ShiftF9
+'MacroDescription:Delete856Field
+
+
+' Shift-F9
+
+Sub Main ()
+
+   Dim CS As Object
+   Dim sData As String
+   Dim iNumFound As Integer
+   
+   
+   On Error Resume Next
+   Set CS  = GetObject(,"Connex.Client")
+   On Error GoTo 0
+   If CS  Is Nothing Then
+      Set CS  = CreateObject("Connex.Client")
+   End If
+   
+      
+   If CS.GetField(856,1,sData)=True Then
+      CS.DeleteField "856",1
+   End If            
+  
+                 
+End Sub
