@@ -1,0 +1,28 @@
+'MacroName:add949Field
+'MacroDescription:add 949 field with barcode and collection code
+
+
+'CtrlF5
+
+
+  Sub Main
+    'Set up CS shortcut
+    Dim CS As Object
+    On Error Resume Next
+    Set CS  = GetObject(,"Connex.Client")
+    On Error GoTo 0
+    If CS  Is Nothing Then
+      Set CS  = CreateObject("Connex.Client")
+    End If
+
+    'Add a new 949 field to the record
+   bool = CS.AddField(1, "949  " + Chr(223) + "b BARCODE " + Chr(223) + "c 01 " + Chr(223) + "d MCT " + Chr(223) + "e GEN")
+
+   CS.FindText"BARCODE",True
+   
+    'Display the results in a message box
+   ' MsgBox "Double-click on 'BARCODE' and scan Alma barcode" 
+    
+    
+  End Sub
+
