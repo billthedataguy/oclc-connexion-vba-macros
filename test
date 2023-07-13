@@ -1,0 +1,16 @@
+'MacroName:test
+'MacroDescription:test
+
+Sub Main
+
+   Dim CS As Object
+   On Error Resume Next
+   Set CS  = GetObject(,"Connex.Client")
+   On Error GoTo 0
+   If CS  Is Nothing Then
+      Set CS  = CreateObject("Connex.Client")
+   End If
+   
+   MsgBox "Test successful"
+
+End Sub
